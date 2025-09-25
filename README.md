@@ -13,7 +13,7 @@ This repository is has the following structure:
 # Tools and scripts
 
 The abundances were generated using the Rscript `traitement_acne_2022.R` .
-The abundances and config files were used with [CAMISIM V1.3](https://github.com/CAMI-challenge/CAMISIM) using the following command:
+The abundances and config files (with seeds) were used with [CAMISIM V1.3](https://github.com/CAMI-challenge/CAMISIM) using the following command:
 
 ```bash
 python3 metagenomesimulation.py {config_file}
