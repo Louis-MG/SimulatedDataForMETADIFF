@@ -19,3 +19,5 @@ The abundances and config files were used with [CAMISIM V1.3](https://github.com
 python3 metagenomesimulation.py {config_file}
 ```
 The yaml to reproduce the camisim environment is `camisim.yml`. The github version of CAMISIM was used within the environment.
+
+NOTE: the functional simulation uses abundances from the taxonomic simulation.
