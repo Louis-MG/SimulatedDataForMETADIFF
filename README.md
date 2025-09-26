@@ -16,7 +16,7 @@ This repository is has the following structure:
     - abundance profiles 
  - global files: 
     - metadata 
-    - scripts to replicate abundance profiles 
+    - scripts to replicate abundance profiles (`traitement_acne_2022.R`)
     - env yml for replication
 
 # Tools and scripts
