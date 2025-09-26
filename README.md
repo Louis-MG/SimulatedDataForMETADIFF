@@ -32,6 +32,7 @@ command:
 #start the simulation
 python3 metagenomesimulation.py {config_file}
 ```
-
 NOTE: the functional simulation uses abundance profiles from the
 taxonomic simulation.
+
+To get insight into the -R and bash- scripts, use a `--help` argument.
