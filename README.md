@@ -13,7 +13,11 @@ This repository is has the following structure:
     - configs files 
     - reference genomes 
     - id to genome file 
-    - abundance profiles 
+    - abundance profiles
+ - figures:
+    - tables for taxonomy and functional
+    - script to generate the figures from the tables
+    - scripts (R'n'bash) to generate intermediate files and tables
  - global files: 
     - metadata 
     - scripts to replicate abundance profiles (`traitement_acne_2022.R`)
