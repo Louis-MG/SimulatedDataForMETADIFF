@@ -1,0 +1,243 @@
+# this file contains the save of the precision calculation. It awas obtained by doing a cut on the 4 columns corresponding to the 4 species, sorting, counting uniques, and printing the file name, last line, ans total number of lines. If the last line was 0 0 0 0, it meant there
+# were kmers enriched that were not from any of the 4 species. ANy other line (with a 1 at any position) meant no kmers enriched were not from at least one of the 4 genomes.
+# looks like :
+# cat bifrost_query.tsv | wc -l >> save_precision.txt
+# cut -f 148,149,150,151 bifrost_query.tsv | sort | uniq -c >> save_precision.txt
+
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC12_40M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+2
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC13_40M/result_genomes_bifrost_query.tsv
+      2 0	0	0	0
+409
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC14_40M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+3674
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC15_20M/result_genomes_bifrost_query.tsv
+     38 0	0	1	0
+948
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC15_40M/result_genomes_bifrost_query.tsv
+     19 0	0	0	1
+17786
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC2_10M/result_genomes_bifrost_query.tsv
+     11 0	0	0	0
+14349
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC2_20M/result_genomes_bifrost_query.tsv
+     87 0	0	0	0
+391695
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC2_40M/result_genomes_bifrost_query.tsv
+     48 0	0	0	0
+4255706
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC3_10M/result_genomes_bifrost_query.tsv
+     31 0	0	0	0
+1861897
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC3_20M/result_genomes_bifrost_query.tsv
+     59 0	0	0	0
+8696763
+
+/mnt/ssd/LM/kmdiff_output/rep0/FC3_40M/result_genomes_bifrost_query.tsv
+     98 0	0	0	0
+13280598
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC12_40M/result_genomes_bifrost_query.tsv
+     22 0	1	0	0
+23
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC13_40M/result_genomes_bifrost_query.tsv
+     17 0	0	1	0
+238
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC14_40M/result_genomes_bifrost_query.tsv
+      9 0	0	0	0
+2953
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC15_10M/result_genomes_bifrost_query.tsv
+    166 0	1	0	0
+167
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC15_20M/result_genomes_bifrost_query.tsv
+     78 0	0	1	0
+932
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC15_40M/result_genomes_bifrost_query.tsv
+      8 0	0	0	0
+17858
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC2_10M/result_genomes_bifrost_query.tsv
+     17 0	0	0	0
+16013
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC2_20M/result_genomes_bifrost_query.tsv
+     89 0	0	0	0
+414986
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC2_40M/result_genomes_bifrost_query.tsv
+     47 0	0	0	0
+4307174
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC3_10M/result_genomes_bifrost_query.tsv
+     63 0	0	0	0
+1901455
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC3_20M/result_genomes_bifrost_query.tsv
+     54 0	0	0	0
+8679903
+
+/mnt/ssd/LM/kmdiff_output/rep1/FC3_40M/result_genomes_bifrost_query.tsv
+     79 0	0	0	0
+13238151
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC12_40M/result_genomes_bifrost_query.tsv
+      6 0	1	0	0
+7
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC13_40M/result_genomes_bifrost_query.tsv
+    176 0	1	0	0
+177
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC14_40M/result_genomes_bifrost_query.tsv
+    348 0	0	1	0
+3121
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC15_10M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+97
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC15_20M/result_genomes_bifrost_query.tsv
+    114 0	0	1	0
+1112
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC15_40M/result_genomes_bifrost_query.tsv
+      5 0	0	0	0
+19341
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC2_10M/result_genomes_bifrost_query.tsv
+     10 0	0	0	0
+15687
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC2_20M/result_genomes_bifrost_query.tsv
+     95 0	0	0	0
+472895
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC2_40M/result_genomes_bifrost_query.tsv
+     39 0	0	0	0
+4525108
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC3_10M/result_genomes_bifrost_query.tsv
+     22 0	0	0	0
+2076000
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC3_20M/result_genomes_bifrost_query.tsv
+     37 0	0	0	0
+8825535
+
+/mnt/ssd/LM/kmdiff_output/rep2/FC3_40M/result_genomes_bifrost_query.tsv
+     64 0	0	0	0
+13224425
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC12_40M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+39
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC13_40M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+375
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC14_40M/result_genomes_bifrost_query.tsv
+     11 0	0	0	0
+3765
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC15_10M/result_genomes_bifrost_query.tsv
+    121 0	1	0	0
+122
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC15_20M/result_genomes_bifrost_query.tsv
+     61 0	0	1	0
+906
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC15_40M/result_genomes_bifrost_query.tsv
+     11 0	0	0	0
+18852
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC2_10M/result_genomes_bifrost_query.tsv
+      8 0	0	0	0
+15289
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC2_20M/result_genomes_bifrost_query.tsv
+     69 0	0	0	0
+426652
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC2_40M/result_genomes_bifrost_query.tsv
+     54 0	0	0	0
+4342767
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC3_10M/result_genomes_bifrost_query.tsv
+     24 0	0	0	0
+1943259
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC3_20M/result_genomes_bifrost_query.tsv
+     48 0	0	0	0
+8695721
+
+/mnt/ssd/LM/kmdiff_output/rep3/FC3_40M/result_genomes_bifrost_query.tsv
+     83 0	0	0	0
+13256458
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC12_40M/result_genomes_bifrost_query.tsv
+      8 0	1	0	0
+9
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC13_40M/result_genomes_bifrost_query.tsv
+      6 0	0	0	0
+335
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC14_40M/result_genomes_bifrost_query.tsv
+      6 0	0	0	0
+3173
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC15_10M/result_genomes_bifrost_query.tsv
+     14 0	0	0	0
+183
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC15_20M/result_genomes_bifrost_query.tsv
+      1 0	0	0	0
+1459
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC15_40M/result_genomes_bifrost_query.tsv
+      6 0	0	0	0
+19417
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC2_10M/result_genomes_bifrost_query.tsv
+     56 0	0	0	0
+15975
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC2_20M/result_genomes_bifrost_query.tsv
+     67 0	0	0	0
+436886
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC2_40M/result_genomes_bifrost_query.tsv
+     62 0	0	0	0
+1349389
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC3_10M/result_genomes_bifrost_query.tsv
+     50 0	0	0	0
+1996122
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC3_20M/result_genomes_bifrost_query.tsv
+     51 0	0	0	0
+8812133
+
+/mnt/ssd/LM/kmdiff_output/rep4/FC3_40M/result_genomes_bifrost_query.tsv
+     93 0	0	0	0
+13240177
+
