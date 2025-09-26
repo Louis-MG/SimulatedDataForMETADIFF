@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 100
----
-
 # Simulated Data For META-DIFF
 
 Repository to replicate our simulation used in the paper METADIFF
