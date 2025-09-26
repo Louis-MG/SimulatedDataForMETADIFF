@@ -1,23 +1,43 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 100
+---
+
 # Simulated Data For META-DIFF
+
 Repository to replicate our simulation used in the paper METADIFF
 
 # Structure
 
-This repository is has the following structure:
- - functionnal analysis (10 paired-end samples per condition, 3 conditions, 5 replicates)
- - taxonomic analysis (10 paired-end samples per condition, 12 conditions, 5 replicates)
- - global files:
-     - genomes used
-     - global config
+This repository is has the following structure: 
+ - functional analysis (10 paired-end samples per condition, 3 conditions, 5 replicates) 
+    - configs files 
+    - modified reference genomes 
+    - id to genome file with modified reference genomes 
+ - taxonomic analysis (10 paired-end samples per condition, 12 conditions, 5 replicates) 
+    - configs files 
+    - reference genomes 
+    - id to genome file 
+    - abundance profiles 
+ - global files: 
+    - metadata 
+    - scripts to replicate abundance profiles 
+    - env yml for replication
 
 # Tools and scripts
 
-The abundances were generated using the Rscript `traitement_acne_2022.R` .
-The abundances and config files (with seeds) were used with [CAMISIM V1.3](https://github.com/CAMI-challenge/CAMISIM) using the following command:
+The abundances were generated using the Rscript `traitement_acne_2022.R`
+. The abundances and config files (with seeds) were used with [CAMISIM
+V1.3](https://github.com/CAMI-challenge/CAMISIM) using the following
+command:
 
-```bash
+``` bash
+#create a mamba env using the camisim.yml file
+#activate env
+#start the simulation
 python3 metagenomesimulation.py {config_file}
 ```
-The yaml to reproduce the camisim environment is `camisim.yml`. The github version of CAMISIM was used within the environment.
 
-NOTE: the functional simulation uses abundances from the taxonomic simulation.
+NOTE: the functional simulation uses abundance profiles from the
+taxonomic simulation.
