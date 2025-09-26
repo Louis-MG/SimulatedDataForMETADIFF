@@ -3,9 +3,9 @@ library(cowplot)
 library(patchwork)
 library(compositions)
 
-df = read.csv("~/Documents/microbiome/figures/benjamini/table_results_metrics.csv", sep = ",", header = TRUE)
-df$FC <- as.factor(df$FC)
-df$lectures <- as.factor(df$lectures)
+# df = read.csv("~/Documents/microbiome/figures/benjamini/table_results_metrics.csv", sep = ",", header = TRUE)
+# df$FC <- as.factor(df$FC)
+# df$lectures <- as.factor(df$lectures)
 
 ###############################################
 #
@@ -13,13 +13,13 @@ df$lectures <- as.factor(df$lectures)
 #
 ###############################################
 
-df_counts = read.table("/home/lmgueguen/Documents/microbiome/figures/benjamini/table_kmers_nbrs.tsv", header = TRUE)
+df_counts = read.table("./taxonomy/table_kmers_nbrs.tsv", header = TRUE)
 df_counts$FC <- as.factor(df_counts$FC)
 df_counts$reads <- as.factor(df_counts$reads)
 
 ggplot(df_counts, aes(x = FC, y = counts, color = reads)) + geom_boxplot(fill="white", position = "dodge", outlier.color=NA) + scale_y_continuous(trans="log10") + labs(title = "Number of k-mers detected in cases and controls", x = "Fold-change", y = "Number of k-mers", color = "Sequencing depths") + theme(text=element_text(size=20)) + geom_point(position=position_jitterdodge(dodge.width=0.75)) + facet_grid(cols = vars(conditions))
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/benjamini/kmer_counts.png", dpi = 320, width = 10, height = 6)
+ggsave(filename = "./kmer_counts.png", dpi = 320, width = 10, height = 6)
 
 ###############################################
 #
@@ -29,12 +29,12 @@ ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/benjamini/kmer_c
 
 #par especes :
 
-df_1 <- read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/table_kmers_per_species.csv", header = TRUE, sep =",")
+df_1 <- read.table(file = "./taxonomy/table_kmers_per_species.csv", header = TRUE, sep =",")
 df_1[df_1$kmers == 0,]$kmers <- 1
 df_1$FC <- as.factor(df_1$FC)
 df_1$Sequencing.depths <- as.factor(df_1$Sequencing.depths)
 
-df_2 = read.csv("~/Documents/microbiome/figures/benjamini/table_recall_uniq.csv", sep = ",", header = TRUE)
+df_2 = read.csv("./taxonomy/table_recall_uniq.csv", sep = ",", header = TRUE)
 df_2$FC <- as.factor(df_2$FC)
 df_2$Reads <- as.factor(df_2$Reads)
 
@@ -55,8 +55,8 @@ prow <- plot_grid(a +  theme(legend.position="none"), b +  theme(legend.position
 
 plot_grid(prow, legend, rel_widths = c(3, .7))
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/nbr_kmer_recall_per_sp.png',dpi=400, height = 6, width = 10)
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/nbr_kmer_recall_per_sp.svg', dpi=320, height = 6, width = 10)
+ggsave('./nbr_kmer_recall_per_sp.png',dpi=400, height = 6, width = 10)
+ggsave('./nbr_kmer_recall_per_sp.svg', dpi=320, height = 6, width = 10)
 
 ###############################################
 #
@@ -64,14 +64,14 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/nbr_kmer_recall_p
 #
 ###############################################
 # A CHANGER
-df_recall = read.csv("~/Documents/microbiome/figures/benjamini/table_recall_uniq.csv", sep = ",", header = TRUE)
+df_recall = read.csv("./taxonomy/table_recall_uniq.csv", sep = ",", header = TRUE)
 df_recall$FC <- as.factor(df_recall$FC)
 df_recall$Reads <- as.factor(df_recall$Reads)
 
 ggplot(data = df_recall, aes(x=FC, y = recall, color=Reads)) + geom_boxplot(fill="white", position = "dodge", outlier.color=NA) + labs(y = "Recall", title = "Recall of unique enriched k-mers for C.acnes") + scale_fill_brewer(palette = "Set2") + xlab(NULL) + geom_point(position=position_jitterdodge(dodge.width=0.75)) + theme(text=element_text(size=15)) + facet_grid(rows = vars(espece))+ theme_bw()+ theme(strip.text = element_text(face = "italic"))
 
 
-df_prec = read.csv("~/Documents/microbiome/figures/benjamini/table_precision.csv", sep = ",", header = TRUE)
+df_prec = read.csv("./taxonomy/table_precision.csv", sep = ",", header = TRUE)
 df_prec$FC <- as.factor(df_prec$FC)
 df_prec$Reads <- as.factor(df_prec$Reads)
 
@@ -91,7 +91,7 @@ prow <- plot_grid(a +  theme(legend.position="none"), c +  theme(legend.position
 
 plot_grid(prow, legend, rel_widths = c(3, .7))
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/nbre_kmer_and_precision_per_sp.png',dpi=400, height = 6, width = 10)
+ggsave('./nbre_kmer_and_precision_per_sp.png',dpi=400, height = 6, width = 10)
 ###############################################
 #
 #     PRECISIONS PAR ESPECE
@@ -99,7 +99,7 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/nbre_kmer_and_precision_per
 ###############################################
 
 
-df_prec_sp = read.table(file = "~/Documents/microbiome/figures/benjamini/table_precision_per_sp.csv", sep = ",", header = T)
+df_prec_sp = read.table(file = "./taxonomy/table_precision_per_sp.csv", sep = ",", header = T)
 df_prec_sp$species <- as.factor(df_prec_sp$species)
 df_prec_sp$Sequencing.depths <- as.factor(df_prec_sp$Sequencing.depths)
 df_prec_sp$FC <- as.factor(df_prec_sp$FC)
@@ -131,7 +131,7 @@ prow <- plot_grid(c + theme(legend.position="none"), b + theme(legend.position="
 
 plot_grid(prow, legend, rel_widths = c(3, .5))
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/plot_4_pannels.svg',dpi=320, height = 12, width = 12)
+ggsave('./plot_4_pannels.svg',dpi=320, height = 12, width = 12)
 
 
 prow <- plot_grid(b + theme(legend.position="none"), d + theme(legend.position="none"),
@@ -142,7 +142,7 @@ prow <- plot_grid(b + theme(legend.position="none"), d + theme(legend.position="
 
 plot_grid(prow, legend, rel_widths = c(3, .5))
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/plot_2_pannels.png',dpi=320, height = 6, width = 12)
+ggsave('./plot_2_pannels.png',dpi=320, height = 6, width = 12)
 
 ###############################################
 #
@@ -150,7 +150,7 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/plot_2_pannels.png',dpi=320
 #
 ###############################################
 
-df <- read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/table_kmers_per_species.csv", header = TRUE, sep =",")
+df <- read.table(file = "./taxonomy/table_kmers_per_species.csv", header = TRUE, sep =",")
 df[df$kmers == 0,]$kmers <- 1
 df$FC <- as.factor(df$FC)
 df$Sequencing.depths <- as.factor(df$Sequencing.depths)
@@ -167,7 +167,7 @@ prow <- plot_grid(a, b, c,
 
 plot_grid(prow, rel_widths = c(3, .75))
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/param_impact_overview.svg',dpi=320, height = 9, width = 9)
+ggsave('./param_impact_overview.svg',dpi=320, height = 9, width = 9)
 
 ############################
 #
@@ -300,14 +300,14 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/param_impact_over
 #
 ###############################################
 
-df = read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_table_reverse.csv", header = T, sep = ",")
+df = read.table(file = "./taxonomy/supp_table_reverse.csv", header = T, sep = ",")
 df$replicate <- as.factor(df$replicate)
 df$Signal <- as.factor(df$Signal)
 df$Condition <- as.factor(df$Condition)
 
 ggplot(data = df, aes(x=Condition, y = kmers, color = Condition)) + geom_boxplot(fill="white", position = "dodge", outlier.color=NA) + labs(y = "Kmers", title = "Number of enriched k-mers for enrichement in case or control") + scale_fill_brewer(palette = "Set2") + theme(text=element_text(size=15)) + facet_grid(cols =  vars(Signal)) + scale_y_continuous(trans="log10") + theme(legend.position="none")
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_reverse_enrichment_comparison.svg',dpi=320, height = 12, width = 12)
+ggsave('./supp_reverse_enrichment_comparison.svg',dpi=320, height = 12, width = 12)
 
 # ##############################################
 # 
@@ -315,13 +315,13 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_reverse_enri
 # 
 # ##############################################
 
-df = read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/table_depl_enrich_kmers.csv", header = TRUE, sep = ',')
+df = read.table(file = "./taxonomy/table_depl_enrich_kmers.csv", header = TRUE, sep = ',')
 df$condition <- as.factor(df$condition)
 df$replicate <- as.factor(df$replicate)
 
 ggplot(data = df, aes(x=condition, y = kmers, color = condition)) + geom_boxplot(fill = "white", position = "dodge", outlier.color=NA) + labs(y = "Kmers", title = "Number of enriched kmers for enrichement in case and control") + scale_fill_brewer(palette = "Set2") + theme(text=element_text(size=15)) + scale_y_continuous(trans="log10") + theme(legend.position="none")
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_depl_enrich_kmers.svg',dpi=320, height = 12, width = 12)
+ggsave('./supp_depl_enrich_kmers.svg',dpi=320, height = 12, width = 12)
 
 # ##############################################
 # 
@@ -329,13 +329,13 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_depl_enrich_
 # 
 # ##############################################
 
-df = read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/table_kmers_noise_comparison.tsv", header = T, sep = "\t")
+df = read.table(file = "./taxonomy/table_kmers_noise_comparison.tsv", header = T, sep = "\t")
 df$comparison <- as.factor(df$comparison)
 df$condition <- as.factor(df$condition)
 
 ggplot(data = df, aes(x=condition, y = kmers, color = condition)) + geom_boxplot(fill = "white", position = "dodge", outlier.color=NA) + geom_point(position=position_jitterdodge(dodge.width=0.75)) + labs(y = "Kmers", title = "Number of enriched kmers between controls samples") + scale_fill_brewer(palette = "Set2") + theme(text=element_text(size=15)) + theme(legend.position="none")
 
-ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_comparison_noise_samples.svg',dpi=320, height = 12, width = 12)
+ggsave('./supp_comparison_noise_samples.svg',dpi=320, height = 12, width = 12)
 
 ###############################################
 #
@@ -382,7 +382,7 @@ ggsave('/home/lmgueguen/Documents/microbiome/figures/benjamini/supp_comparison_n
 ###############################################
 
 library(tidyverse)
-df <- read.table(file = "/home/lmgueguen/Documents/microbiome/figures/benjamini/table_uniq_kmers_counts_FC3_40M.tsv", sep = "\t", header = TRUE)
+df <- read.table(file = "./taxonomy/table_uniq_kmers_counts_FC3_40M.tsv", sep = "\t", header = TRUE)
 uniq_kmers_number <- c(1643682, 5761020, 1497335, 1276446)
 percent <- df
 percent[,2:6] <- df[,2:6] / uniq_kmers_number
@@ -464,7 +464,7 @@ ggplot(percent, aes(y = value, x = espece, color = espece)) + geom_boxplot() + t
 
 library("ggplot2")
 
-df = read.table(file = "/mnt/projects_tn03/KMER_analysis/DATA/diff_abundances/all_metrics_table.tsv", header = TRUE, sep = "\t")
+df = read.table(file = "./taxonomy/all_metrics_table.tsv", header = TRUE, sep = "\t")
 df$method <- as.factor(df$method)
 df$FC <- as.factor(df$FC)
 df$sequencing_depth <- as.factor(df$sequencing_depth)
@@ -477,7 +477,7 @@ ggplot(df, mapping = aes(x = method, y = Precision, color = FC)) +
   xlab("Methods") +
   theme_bw()
 
-ggsave(filename = "/mnt/projects_tn03/KMER_analysis/DATA/figures/metadiff_versus_others_precision.pdf", dpi = 300)
+ggsave(filename = "./metadiff_versus_others_precision.svg", dpi = 300)
 
 ggplot(df, mapping = aes(x = method, y = Recall, color = FC)) +
   geom_boxplot() +
@@ -487,7 +487,7 @@ ggplot(df, mapping = aes(x = method, y = Recall, color = FC)) +
   xlab("Methods") +
   theme_bw()
 
-ggsave(filename = "/mnt/projects_tn03/KMER_analysis/DATA/figures/metadiff_versus_others_recall.pdf", dpi = 300)
+ggsave(filename = "./metadiff_versus_others_recall.sgv", dpi = 300)
 
 # ################################
 # 
@@ -498,7 +498,7 @@ ggsave(filename = "/mnt/projects_tn03/KMER_analysis/DATA/figures/metadiff_versus
 library("ggplot2")
 library("cowplot")
 
-df = read.table(file = "/home/lmgueguen/Documents/microbiome/figures/diff_abundances/all_metrics_table.tsv", header = TRUE, sep = "\t")
+df = read.table(file = "./taxonomy/all_metrics_table.tsv", header = TRUE, sep = "\t")
 # df = read.table(file = "/mnt/projects_tn03/KMER_analysis/DATA/diff_abundances/all_metrics_table.tsv", header = TRUE, sep = "\t")
 df$method <- as.factor(df$method)
 df$FC <- as.factor(df$FC)
@@ -513,7 +513,7 @@ ggplot(df, mapping = aes(x = method, y = Precision, color = FC)) +
   ylab("Precision of enriched species") +
   theme_bw()
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/metadiff_versus_others_precision.pdf", dpi = 300, width = 10, height = 6)
+ggsave(filename = "./metadiff_versus_others_precision.svg", dpi = 300, width = 10, height = 6)
 
 ggplot(df, mapping = aes(x = method, y = Recall, color = FC)) +
   geom_boxplot() +
@@ -524,7 +524,7 @@ ggplot(df, mapping = aes(x = method, y = Recall, color = FC)) +
   ylab("Recall of enriched species") +
   theme_bw()
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/metadiff_versus_others_recall.pdf", dpi = 300, height = 6, width = 10)
+ggsave(filename = "./metadiff_versus_others_recall.svg", dpi = 300, height = 6, width = 10)
 
 a <- ggplot(df, mapping = aes(x = method, y = Precision, color = FC)) +
   geom_boxplot() +
@@ -556,7 +556,7 @@ prow <- plot_grid(a + theme(legend.position="none"), b +  theme(legend.position=
                   ncol = 2
 )
 plot_grid(prow, legend, rel_widths = c(3, .5))
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/metadiff_versus_others_precision_recall_and_precision.png", dpi = 300, height = 6, width = 12)
+ggsave(filename = "./metadiff_versus_others_precision_recall_and_precision.png", dpi = 300, height = 6, width = 12)
 
 
 ##################################
@@ -569,7 +569,7 @@ library("ggplot2")
 library("cowplot")
 
 
-df = read.table("/home/lmgueguen/Documents/microbiome/figures/precision_unitigs.tsv", header = TRUE, sep = "\t")
+df = read.table("./taxonomy/precision_unitigs.tsv", header = TRUE, sep = "\t")
 df$FC <- as.factor(df$FC)
 df$sequencing.depth <- as.factor(df$sequencing.depth)
 df$replicate <- as.factor(df$replicate)
@@ -591,11 +591,11 @@ prow <- plot_grid(c,
 
 plot_grid(prow)
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/precision_unitigs.png", dpi = 300, height = 6, width = 10)
+ggsave(filename = "./precision_unitigs.png", dpi = 300, height = 6, width = 10)
 
 # tenter de faire les memes metriques mais regardant ce qui est unique a une espece enrichie seulement
 
-df = read.table("/home/lmgueguen/Documents/microbiome/figures/table_recall_functional.tsv", header = TRUE, sep = "\t")
+df = read.table("./functional/table_recall_functional.tsv", header = TRUE, sep = "\t")
 df$Fold.change <- as.factor(df$Fold.change)
 df$Sequencing.depth <- as.factor(df$Sequencing.depth)
 df$recall <- df$genes.recovered / df$ground_truth
@@ -611,7 +611,7 @@ d <- ggplot(df, aes(x = Fold.change, y = recall, color = Sequencing.depth)) +
       theme(strip.text = element_text(face = "italic"))
 
 d
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/recall_functional_unitigs.png", dpi = 300, height = 6, width = 10)
+ggsave(filename = "./recall_functional_unitigs.png", dpi = 300, height = 6, width = 10)
 
 legend <- get_legend(
   # create some space to the left of the legend
@@ -627,7 +627,7 @@ prow <- plot_grid(c + theme(legend.position = "none"), d +  theme(legend.positio
 
 plot_grid(prow, legend, rel_widths = c(3, .5))
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/2_panels_unitigs.png", dpi = 300, height = 6, width = 12)
+ggsave(filename = "./2_panels_unitigs.png", dpi = 300, height = 6, width = 12)
 
 #####################################
 #
@@ -641,7 +641,7 @@ library("cowplot")
 
 # precision unique
 
-df_prec_sp = read.table(file = "~/Documents/microbiome/figures/benjamini/table_precision_per_sp.csv", sep = ",", header = T)
+df_prec_sp = read.table(file = "./taxonomy/table_precision_per_sp.csv", sep = ",", header = T)
 df_prec_sp$species <- as.factor(df_prec_sp$species)
 df_prec_sp$Sequencing.depths <- as.factor(df_prec_sp$Sequencing.depths)
 df_prec_sp$FC <- as.factor(df_prec_sp$FC)
@@ -659,7 +659,7 @@ a <- ggplot(df_prec_sp, aes(x = FC, y = precision, color = Sequencing.depths)) +
   theme(strip.text = element_text(face = "italic"))
 
 # recall unique
-df_2 = read.csv("~/Documents/microbiome/figures/benjamini/table_recall_uniq.csv", sep = ",", header = TRUE)
+df_2 = read.csv("./taxonomy/table_recall_uniq.csv", sep = ",", header = TRUE)
 df_2$FC <- as.factor(df_2$FC)
 df_2$Reads <- as.factor(df_2$Reads)
 
@@ -689,7 +689,7 @@ legend1 <- get_legend(
 
 
 # precision unitigs
-df = read.table("/home/lmgueguen/Documents/microbiome/figures/precision_unitigs.tsv", header = TRUE, sep = "\t")
+df = read.table("./taxonomy/precision_unitigs.tsv", header = TRUE, sep = "\t")
 df$FC <- as.factor(df$FC)
 df$sequencing.depth <- as.factor(df$sequencing.depth)
 df$replicate <- as.factor(df$replicate)
@@ -704,7 +704,7 @@ c <- ggplot(df, aes(x = FC, y = precision, color = sequencing.depth)) +
   theme(text=element_text(size=11))
 
 
-df = read.table("/home/lmgueguen/Documents/microbiome/figures/table_recall_functional.tsv", header = TRUE, sep = "\t")
+df = read.table("./functional/table_recall_functional.tsv", header = TRUE, sep = "\t")
 df$Fold.change <- as.factor(df$Fold.change)
 df$Sequencing.depth <- as.factor(df$Sequencing.depth)
 df$recall <- df$genes.recovered / df$ground_truth
@@ -734,7 +734,7 @@ legend2 <- get_legend(
 
 # precision META-DIFF versus others
 
-df = read.table(file = "/home/lmgueguen/Documents/microbiome/figures/diff_abundances/all_metrics_table.tsv", header = TRUE, sep = "\t")
+df = read.table(file = "./taxonomy/all_metrics_table.tsv", header = TRUE, sep = "\t")
 # df = read.table(file = "/mnt/projects_tn03/KMER_analysis/DATA/diff_abundances/all_metrics_table.tsv", header = TRUE, sep = "\t")
 df$method <- as.factor(df$method)
 df$FC <- as.factor(df$FC)
@@ -779,4 +779,4 @@ plot_grid(prow1, legend1, prow2, legend2, prow3, legend3,
           labels = c("", "", "", "", "", ""),
           label_size = 20)
 
-ggsave(filename = "/home/lmgueguen/Documents/microbiome/figures/all_benchmark_metrics.png", dpi = 300, height = 12, width = 12)
+ggsave(filename = "./all_benchmark_metrics.png", dpi = 300, height = 12, width = 12)
