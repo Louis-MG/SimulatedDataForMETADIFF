@@ -104,7 +104,7 @@ Noise <- function(df, mu = 1, sigma = 0.05) {
 #############################################
 
 
-df = read.table("/home/lmgueguen/Documents/microbiome/acne_S_2022.tsv", sep = "\t", header = TRUE)
+df = read.table("./SimulatedDataForMETADIFF/taxonomy/abondances/acne_S_2022.tsv", sep = "\t", header = TRUE)
 # nettoyage
 df <- df[-c(which(df$S == "Homo sapiens")),]
 genomes <-  df$S
@@ -226,108 +226,58 @@ ggplot(data = df_1_2, mapping = aes(x=genomes, abundances, color = dataset)) + g
 #
 ##########################################################
 
-df <- read.table(file = "/home/lmgueguen/Documents/microbiome/abondances/acne_150_2022.tsv", sep = "\t", header = FALSE)
-
-#noise de rep0 avait disparus ?? refaits
-for (i in c(1:10)) {
-  df_2 <- Noise(df)
-  write.table(df_2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep",0,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", row.names = FALSE, col.names = FALSE)
-}
+df <- read.table(file = "./SimulatedDataForMETADIFF/taxonomy/abondances/acne_150_2022.tsv", sep = "\t", header = FALSE)
 
 #ajout du FC
-for (j in c(1:4)) {
+for (j in c(1:5)) {
     for (i in c(1:10)) {
       df_2 <- Noise(df)
-      write.table(df_2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep",j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", row.names = FALSE, col.names = FALSE)
+      write.table(df_2, file = paste("./rep",j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", row.names = FALSE, col.names = FALSE)
     }
     
       #CF3
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(3,3,3,3), target = c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep",j,"/FC3/acne_150_rep_", i, "_FC3.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep",j,"/FC3/acne_150_rep_", i, "_FC3.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
     
     #FC2
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(2,2,2,2), target =  c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep",j,"/FC2/acne_150_rep_", i, "_FC2.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep",j,"/FC2/acne_150_rep_", i, "_FC2.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
     
     #FC1.5
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(1.5,1.5,1.5,1.5), target =  c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/FC15/acne_150_rep_", i, "_FC15.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep", j, "/FC15/acne_150_rep_", i, "_FC15.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
     
     #FC1.4
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(1.4,1.4,1.4,1.4), target =  c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/FC14_40/acne_150_rep_", i, "_FC14.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep", j, "/FC14_40/acne_150_rep_", i, "_FC14.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
     
     #FC1.3
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j, "/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(1.3,1.3,1.3,1.3), target =  c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/FC13_40/acne_150_rep_", i, "_FC13.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep", j, "/FC13_40/acne_150_rep_", i, "_FC13.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
     
     #FC1.2
     for (i in c(1:10)) {
-      table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+      table <- read.table(file = paste("./rep", j, "/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
       table2 <- DE(table, fold_change = c(1.2,1.2,1.2,1.2), target =  c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-      write.table(table2, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j, "/FC12_40/acne_150_rep_", i, "_FC12.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+      write.table(table2, file = paste("./rep", j, "/FC12_40/acne_150_rep_", i, "_FC12.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
     }
 
 }
-  
-# boxplot
-# Noise
-df_NOISE <- as.data.frame(c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"))
-colnames(df_NOISE) <- "genomes"
-table <- read.table(file = "/home/lmgueguen/Documents/microbiome/acne_150_rep_1.tsv", sep = "\t", header = FALSE)
-abondances <- table[table$V1 %in% c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"),]$V2
-df_NOISE <- cbind(df_NOISE, abondances)
-for (i in c(2:10)) {
-  table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
-  table <- table[table$V1 %in% c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"),]
-  colnames(table) <- c("genomes", "abondances")
-  df_NOISE <- rbind(df_NOISE, table)
-}
-df_NOISE <- cbind(df_NOISE, rep("NOISE",dim(df_NOISE)[1]))
-colnames(df_NOISE) <- c("genomes", "abondances", "dataset")
-
-# FC
-df_FC <- as.data.frame(c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"))
-colnames(df_FC) <- "genomes"
-table <- read.table(file = "/home/lmgueguen/Documents/microbiome/acne_150_rep_1_FC3.tsv", sep = "\t", header = FALSE)
-abondances <- table[table$V1 %in% c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"),]$V2
-df_FC <- cbind(df_FC, abondances)
-for (i in c(2:10)) {
-  table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/acne_150_rep_", i, "_FC3.tsv", sep = ""), sep = "\t", header = FALSE)
-  table <- table[table$V1 %in% c("Cutibacterium acnes", "Staphylococcus epidermidis", "Malassezia restricta", "Streptococcus pyogenes"),]
-  colnames(table) <- c("genomes", "abondances")
-  df_FC <- rbind(df_FC, table)
-}
-df_FC <- cbind(df_FC, rep("FC",dim(df_FC)[1]))
-colnames(df_FC) <- c("genomes", "abondances", "dataset")
-df <- rbind(df_FC, df_NOISE)
-
-ggplot(data = df, mapping = aes(genomes, abondances, color = dataset)) + geom_boxplot()
-
-
-
-for (i in c(1:10)) {
-  table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", 1,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
-  table <- DE(table, fold_change = c(3,3,3,3), target = c("Cutibacterium_acnes", "Staphylococcus_epidermidis", "Malassezia_restricta", "Streptococcus_pyogenes"))
-  write.table(table, file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", 1,"/FC3/acne_150_rep_", i, "_FC3.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
-}
-
-table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", 1,"/FC3/acne_150_rep_", 4, "_FC3.tsv", sep = ""), sep = "\t", header = FALSE)
 
 #################################################
 #
@@ -337,8 +287,8 @@ table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondance
 
 for ( j in c(0,1,2,3,4)) {
   for (i in c(1:10)) {
-    table <- read.table(file = paste("/home/lmgueguen/Documents/microbiome/abondances/rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
+    table <- read.table(file = paste("./rep", j,"/noise/acne_150_rep_", i, ".tsv", sep = ""), sep = "\t", header = FALSE)
     table <- DE(table, fold_change = c(3,1/3), target = c("Cutibacterium_acnes", "Malassezia_restricta"))
-    write.table(table, file = paste("/home/lmgueguen/Documents/microbiome/abondances/depletion_enrichment/rep",j,"/acne_150_rep_", i, "_deplete_enriched.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
+    write.table(table, file = paste("./depletion_enrichment/rep",j,"/acne_150_rep_", i, "_deplete_enriched.tsv", sep = ""), sep ="\t", row.names = FALSE, col.names = FALSE)
   }
 }
